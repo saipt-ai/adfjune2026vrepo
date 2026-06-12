@@ -1,0 +1,51 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "lookup1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ProductKey as integer,",
+				"          ProductSubcategoryKey as integer,",
+				"          WeightUnitMeasureCode as string,",
+				"          SizeUnitMeasureCode as string,",
+				"          EnglishProductName as string,",
+				"          StandardCost as decimal(19,4),",
+				"          Color as string,",
+				"          SafetyStockLevel as integer,",
+				"          ListPrice as decimal(19,4),",
+				"          Size as string,",
+				"          Weight as double,",
+				"          DaysToManufacture as integer,",
+				"          ProductLine as string,",
+				"          DealerPrice as decimal(19,4),",
+				"          Class as string,",
+				"          Style as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
+			]
+		}
+	}
+}
