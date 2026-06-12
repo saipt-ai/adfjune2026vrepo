@@ -1,0 +1,15 @@
+{
+	"name": "adfresourcenewrg",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e15f20d2-d90c-43f4-afaf-c3caf4f962a5",
+		"tenantId": "12ae514e-8132-4945-bdd7-581686e3ba16"
+	}
+}
